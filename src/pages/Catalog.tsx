@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Grid, List, Star, Heart, ShoppingCart, ChevronDown } from 'lucide-react';
 import Header from '@/components/Layout/Header';
@@ -87,24 +88,20 @@ const Catalog = () => {
       <main className="flex-1 pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white py-16 lg:py-20">
-          
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20"></div>
           
-          <div className="absolute top-10 right-10 w-20 h-20 bg-white/10 rounded-full blur-xl floating"></div>
-          <div className="absolute bottom-20 left-20 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl floating-delayed"></div>
-          
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-responsive-4xl">
-                Catálogo <span className="text-gradient bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">Premium</span>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+                Catálogo <span className="bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">Premium</span>
               </h1>
-              <p className="text-lg md:text-xl opacity-90 mb-8 text-responsive-lg">
+              <p className="text-lg md:text-xl opacity-90 mb-8">
                 Tecnología de última generación al mejor precio
               </p>
               
               <div className="max-w-md mx-auto">
-                <div className="relative glass-strong rounded-2xl p-1">
+                <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-1 border border-white/20">
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 w-5 h-5" />
                   <Input
                     placeholder="Buscar productos..."
@@ -119,13 +116,13 @@ const Catalog = () => {
         </section>
 
         {/* Filters */}
-        <section className="sticky top-20 z-40 glass-strong border-b backdrop-blur-md">
+        <section className="sticky top-20 z-40 bg-white/95 backdrop-blur-md border-b">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between lg:hidden mb-4">
               <Button
                 variant="outline"
                 onClick={() => setShowFilters(!showFilters)}
-                className="glass text-sm"
+                className="text-sm"
               >
                 <Filter className="w-4 h-4 mr-2" />
                 Filtros
@@ -161,8 +158,8 @@ const Catalog = () => {
                       variant={selectedCategory === category.id ? "default" : "outline"}
                       size="sm"
                       onClick={() => setSelectedCategory(category.id)}
-                      className={`text-xs lg:text-sm glass hover-glow transition-all ${
-                        selectedCategory === category.id ? 'luna-gradient shadow-lg' : ''
+                      className={`text-xs lg:text-sm transition-all ${
+                        selectedCategory === category.id ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg' : 'hover:bg-gray-50'
                       }`}
                     >
                       <span className="mr-1">{category.icon}</span>
@@ -173,7 +170,7 @@ const Catalog = () => {
 
                 <div className="w-full lg:w-48">
                   <Select value={sortBy} onValueChange={setSortBy}>
-                    <SelectTrigger className="glass text-sm">
+                    <SelectTrigger className="text-sm">
                       <SelectValue placeholder="Ordenar por" />
                     </SelectTrigger>
                     <SelectContent>
@@ -194,40 +191,35 @@ const Catalog = () => {
         <section className="py-8 lg:py-12">
           <div className="container mx-auto px-4">
             <div className="mb-6">
-              <p className="text-gray-600 text-responsive-sm">
+              <p className="text-gray-600">
                 Mostrando {sortedProducts.length} productos disponibles
               </p>
             </div>
 
-            <div className={`tech-grid ${
+            <div className={`grid gap-4 lg:gap-6 ${
               viewMode === 'grid' 
                 ? 'grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5' 
                 : 'grid-cols-1'
-            } gap-4 lg:gap-6`}>
+            }`}>
               {sortedProducts.map(product => (
-                <Card key={product.id} className="group glass hover-lift hover-glow card-3d overflow-hidden border-0 shadow-lg">
+                <Card key={product.id} className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
-                      <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 gpu-accelerated"
-                          loading="lazy"
-                        />
+                      <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
+                        <div className="text-8xl">{product.image}</div>
                       </div>
 
                       <div className="absolute top-2 left-2 flex flex-col gap-1">
                         {product.isNew && (
-                          <Badge className="neon-green text-white text-xs px-2 py-1">✨ Nuevo</Badge>
+                          <Badge className="bg-green-500 text-white text-xs px-2 py-1">✨ Nuevo</Badge>
                         )}
                         {product.discount > 0 && (
-                          <Badge className="bg-red-500 text-white text-xs px-2 py-1 pulse-glow">-{product.discount}%</Badge>
+                          <Badge className="bg-red-500 text-white text-xs px-2 py-1">-{product.discount}%</Badge>
                         )}
                       </div>
 
                       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                        <Button size="icon" variant="secondary" className="w-8 h-8 glass mb-1">
+                        <Button size="icon" variant="secondary" className="w-8 h-8 bg-white/90 mb-1">
                           <Heart className="w-4 h-4" />
                         </Button>
                       </div>
@@ -235,7 +227,7 @@ const Catalog = () => {
                       <div className="absolute inset-x-2 bottom-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                         <Button 
                           size="sm" 
-                          className="w-full luna-gradient text-white text-xs lg:text-sm shadow-lg"
+                          className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs lg:text-sm shadow-lg"
                           onClick={() => handleAddToCart(product)}
                         >
                           <ShoppingCart className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
@@ -247,7 +239,7 @@ const Catalog = () => {
                     <div className="p-3 lg:p-4 space-y-2 lg:space-y-3">
                       <p className="text-xs lg:text-sm text-gray-500 font-medium">{product.brand}</p>
                       
-                      <h3 className="font-semibold text-sm lg:text-base line-clamp-2 text-responsive-sm">
+                      <h3 className="font-semibold text-sm lg:text-base line-clamp-2">
                         {product.name}
                       </h3>
 
@@ -271,7 +263,7 @@ const Catalog = () => {
 
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="text-lg lg:text-xl font-bold luna-gradient-text text-responsive-lg">
+                          <span className="text-lg lg:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             {formatPrice(product.price)}
                           </span>
                         </div>
@@ -290,7 +282,7 @@ const Catalog = () => {
                       <div className="flex gap-2 pt-2">
                         <Button 
                           onClick={() => handleAddToCart(product)}
-                          className="flex-1 text-xs lg:text-sm luna-gradient text-white transition-all" 
+                          className="flex-1 text-xs lg:text-sm bg-gradient-to-r from-blue-600 to-purple-600 text-white" 
                         >
                           <ShoppingCart className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                           Agregar al Carrito
@@ -304,15 +296,15 @@ const Catalog = () => {
 
             {sortedProducts.length === 0 && (
               <div className="text-center py-16">
-                <div className="text-6xl mb-4 floating">🔍</div>
-                <h3 className="text-2xl font-semibold mb-4 text-responsive-xl">No se encontraron productos</h3>
-                <p className="text-gray-600 mb-6 text-responsive-base">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-2xl font-semibold mb-4">No se encontraron productos</h3>
+                <p className="text-gray-600 mb-6">
                   Intenta ajustar tus filtros o buscar con otros términos
                 </p>
                 <Button onClick={() => {
                   setSearchTerm('');
                   setSelectedCategory('all');
-                }} className="luna-gradient">
+                }} className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                   Limpiar filtros
                 </Button>
               </div>

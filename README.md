@@ -1,73 +1,45 @@
-# Welcome to your Lovable project
 
-## Project info
+# Luna Comunicaciones
 
-**URL**: https://lovable.dev/projects/df8d4ebf-1072-43db-bb7b-b5695b3bb593
+## Aplicación web de comercio electrónico para productos móviles
 
-## How can I edit this code?
+### Características principales:
+- ✅ PWA (Progressive Web App) lista para instalar
+- ✅ Carrito de compras funcional con Zustand
+- ✅ Integración con WhatsApp Business
+- ✅ Diseño responsive y nativo
+- ✅ Navegación inferior para móviles
+- ✅ Catálogo de productos con filtros
+- ✅ Sin dependencias de imágenes externas
 
-There are several ways of editing your application.
+### Tecnologías utilizadas:
+- React 18 + TypeScript
+- Vite para build y desarrollo
+- Tailwind CSS para estilos
+- Shadcn/UI para componentes
+- Zustand para estado global
+- React Router para navegación
 
-**Use Lovable**
+### Deploy en Netlify:
+1. Conecta tu repositorio de GitHub
+2. Netlify detectará automáticamente la configuración
+3. El build se ejecutará con `npm run build`
+4. La aplicación estará disponible en tu dominio de Netlify
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/df8d4ebf-1072-43db-bb7b-b5695b3bb593) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Estructura del proyecto:
+```
+src/
+├── components/     # Componentes reutilizables
+├── pages/         # Páginas principales
+├── hooks/         # Hooks personalizados
+├── data/          # Datos y tipos
+└── lib/           # Utilidades
 ```
 
-**Edit a file directly in GitHub**
+### Variables de entorno necesarias:
+Ninguna - la aplicación funciona completamente del lado del cliente.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/df8d4ebf-1072-43db-bb7b-b5695b3bb593) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Comandos:
+- `npm run dev` - Servidor de desarrollo
+- `npm run build` - Build para producción
+- `npm run preview` - Preview del build

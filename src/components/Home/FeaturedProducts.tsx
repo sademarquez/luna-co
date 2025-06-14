@@ -22,7 +22,7 @@ const FeaturedProducts = () => {
       discount: 10,
       rating: 4.9,
       reviews: 234,
-      image: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop",
+      image: "📱",
       features: ["256GB", "Titanio Natural", "A17 Pro"],
       badge: "🔥 Más vendido",
       category: "smartphones",
@@ -37,7 +37,7 @@ const FeaturedProducts = () => {
       discount: 10,
       rating: 4.8,
       reviews: 189,
-      image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=400&fit=crop",
+      image: "📱",
       features: ["512GB", "Titanium Black", "S Pen"],
       badge: "✨ Nuevo",
       category: "smartphones",
@@ -52,7 +52,7 @@ const FeaturedProducts = () => {
       discount: 13,
       rating: 4.7,
       reviews: 156,
-      image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop",
+      image: "🎧",
       features: ["Cancelación de ruido", "USB-C", "Batería 6h"],
       badge: "🎧 Audio premium",
       category: "headphones",
@@ -67,7 +67,7 @@ const FeaturedProducts = () => {
       discount: 19,
       rating: 4.6,
       reviews: 89,
-      image: "https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=400&fit=crop",
+      image: "🛡️",
       features: ["MagSafe", "Cuero genuino", "Protección premium"],
       badge: "🛡️ Protección",
       category: "cases",
@@ -103,11 +103,11 @@ const FeaturedProducts = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border-primary/20">
+          <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-700 border-blue-200">
             🌟 Productos destacados
           </Badge>
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            Los <span className="text-gradient">más populares</span>
+            Los <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">más populares</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Descubre los productos favoritos de nuestros clientes, seleccionados por su calidad, 
@@ -117,14 +117,10 @@ const FeaturedProducts = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {featuredProducts.map((product) => (
-            <Card key={product.id} className="group overflow-hidden border-0 shadow-lg hover-lift luna-shadow">
+            <Card key={product.id} className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
               <div className="relative">
-                <div className="aspect-square overflow-hidden bg-gray-50">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className="aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                  <div className="text-8xl">{product.image}</div>
                 </div>
 
                 <div className="absolute top-3 left-3">
@@ -148,7 +144,7 @@ const FeaturedProducts = () => {
                     </Button>
                     <Button 
                       size="icon" 
-                      className="rounded-full luna-gradient text-white shadow-lg"
+                      className="rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
                       onClick={() => handleAddToCart(product)}
                     >
                       <ShoppingCart className="w-4 h-4" />
@@ -160,7 +156,7 @@ const FeaturedProducts = () => {
               <div className="p-6 space-y-4">
                 <div>
                   <p className="text-sm text-gray-500 font-medium">{product.brand}</p>
-                  <h3 className="font-semibold text-lg text-gray-900 group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-lg text-gray-900 group-hover:text-blue-600 transition-colors">
                     {product.name}
                   </h3>
                 </div>
@@ -210,7 +206,7 @@ const FeaturedProducts = () => {
                 </div>
 
                 <Button 
-                  className="w-full luna-gradient hover:opacity-90 transition-opacity"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                   onClick={() => handleAddToCart(product)}
                 >
                   <ShoppingCart className="w-4 h-4 mr-2" />
@@ -222,7 +218,7 @@ const FeaturedProducts = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button variant="outline" size="lg" asChild className="hover-lift">
+          <Button variant="outline" size="lg" asChild className="border-gray-300 hover:bg-gray-50 hover:-translate-y-1 transition-all duration-300">
             <Link to="/catalog">
               Ver todo el catálogo
             </Link>

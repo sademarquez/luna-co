@@ -15,7 +15,7 @@ const HeroSection = () => {
       description: "Descubre nuestra colección premium de celulares con las mejores marcas y precios increíbles",
       cta: "Ver Catálogo",
       link: "/catalog",
-      image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=400&fit=crop",
+      emoji: "📱",
       badge: "🔥 Nuevos modelos",
       gradient: "from-blue-600 to-purple-600"
     },
@@ -25,7 +25,7 @@ const HeroSection = () => {
       description: "Reparamos tu dispositivo con garantía y repuestos originales. Diagnóstico gratuito.",
       cta: "Ver Servicios",
       link: "/services",
-      image: "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=600&h=400&fit=crop",
+      emoji: "🔧",
       badge: "🔧 Expertos certificados",
       gradient: "from-green-600 to-teal-600"
     },
@@ -35,7 +35,7 @@ const HeroSection = () => {
       description: "Fundas, protectores, cargadores y más. Todo lo que necesitas en un solo lugar.",
       cta: "Ver Accesorios",
       link: "/catalog?category=accessories",
-      image: "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&h=400&fit=crop",
+      emoji: "🛡️",
       badge: "✨ Calidad garantizada",
       gradient: "from-orange-600 to-red-600"
     }
@@ -51,25 +51,20 @@ const HeroSection = () => {
   const currentHero = heroSlides[currentSlide];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50/30">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-8 animate-fade-in">
+          <div className="space-y-8">
             <div className="space-y-4">
-              <Badge variant="secondary" className="mb-4 bg-primary/10 text-primary border-primary/20">
+              <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-700 border-blue-200">
                 {currentHero.badge}
               </Badge>
               
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="text-gradient">{currentHero.title}</span>
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  {currentHero.title}
+                </span>
                 <br />
                 <span className="text-gray-700">{currentHero.subtitle}</span>
               </h1>
@@ -103,13 +98,13 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="luna-gradient hover:opacity-90 transition-opacity group">
+              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg">
                 <Link to={currentHero.link}>
                   {currentHero.cta}
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild className="border-gray-300 hover:bg-gray-50">
                 <Link to="/contact">
                   Contactar asesor
                 </Link>
@@ -134,24 +129,24 @@ const HeroSection = () => {
 
           {/* Right Content - Product Showcase */}
           <div className="relative">
-            <div className="relative z-10 animate-fade-in">
-              <div className="relative">
-                <img
-                  src={currentHero.image}
-                  alt={currentHero.title}
-                  className="w-full h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl hover-lift"
-                />
-                <div className={`absolute inset-0 bg-gradient-to-tr ${currentHero.gradient} opacity-20 rounded-3xl`} />
+            <div className="relative z-10">
+              <div className="relative w-full h-96 lg:h-[500px] rounded-3xl shadow-2xl overflow-hidden">
+                <div className={`w-full h-full bg-gradient-to-tr ${currentHero.gradient} flex items-center justify-center`}>
+                  <div className="text-center text-white">
+                    <div className="text-9xl mb-4">{currentHero.emoji}</div>
+                    <div className="text-2xl font-bold">{currentHero.title}</div>
+                  </div>
+                </div>
                 
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center floating-animation">
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-2xl">📱</div>
                     <div className="text-xs font-semibold">Premium</div>
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-4 -left-4 w-24 h-16 bg-white rounded-xl shadow-lg flex items-center justify-center floating-animation" style={{ animationDelay: '1s' }}>
+                <div className="absolute -bottom-4 -left-4 w-24 h-16 bg-white rounded-xl shadow-lg flex items-center justify-center">
                   <div className="text-center">
                     <div className="text-lg font-bold text-green-600">-30%</div>
                     <div className="text-xs">Descuento</div>
@@ -162,8 +157,8 @@ const HeroSection = () => {
 
             {/* Background Decoration */}
             <div className="absolute inset-0 -z-10">
-              <div className="absolute top-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-10 right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />
+              <div className="absolute top-10 left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20" />
+              <div className="absolute bottom-10 right-10 w-64 h-64 bg-purple-200 rounded-full blur-3xl opacity-20" />
             </div>
           </div>
         </div>
@@ -175,7 +170,7 @@ const HeroSection = () => {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentSlide ? 'bg-primary' : 'bg-gray-300'
+                index === currentSlide ? 'bg-blue-600' : 'bg-gray-300'
               }`}
             />
           ))}
