@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Grid, List, Star, Heart, ShoppingCart, ChevronDown } from 'lucide-react';
 import Header from '@/components/Layout/Header';
@@ -25,10 +24,9 @@ const Catalog = () => {
   const categories = [
     { id: 'all', name: 'Todos', icon: '📱' },
     { id: 'smartphones', name: 'Smartphones', icon: '📱' },
-    { id: 'accessories', name: 'Accesorios', icon: '🔌' },
+    { id: 'headphones', name: 'Audio', icon: '🎧' },
     { id: 'cases', name: 'Fundas', icon: '🛡️' },
     { id: 'chargers', name: 'Cargadores', icon: '🔋' },
-    { id: 'headphones', name: 'Audio', icon: '🎧' },
     { id: 'tablets', name: 'Tablets', icon: '📲' },
     { id: 'smartwatch', name: 'Smartwatch', icon: '⌚' },
     { id: 'gaming', name: 'Gaming', icon: '🎮' }
@@ -61,7 +59,8 @@ const Catalog = () => {
   const filteredProducts = products.filter(product => {
     return (
       (selectedCategory === 'all' || product.category === selectedCategory) &&
-      (searchTerm === '' || product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+      (searchTerm === '' || 
+       product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
        product.brand.toLowerCase().includes(searchTerm.toLowerCase())) &&
       product.inStock
     );
@@ -88,6 +87,7 @@ const Catalog = () => {
       <main className="flex-1 pt-20">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white py-16 lg:py-20">
+          
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20"></div>
           
@@ -152,7 +152,7 @@ const Catalog = () => {
               </div>
             </div>
 
-            <div className={`${showFilters || window.innerWidth >= 1024 ? 'block' : 'hidden'} lg:block`}>
+            <div className={`${showFilters || (typeof window !== 'undefined' && window.innerWidth >= 1024) ? 'block' : 'hidden'} lg:block`}>
               <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
                 <div className="flex flex-wrap gap-2 w-full lg:w-auto">
                   {categories.map(category => (

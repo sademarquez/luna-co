@@ -5,12 +5,14 @@ import { ShoppingCart, Search, Menu, X, User, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { useCart } from '@/hooks/useCart';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { getItemCount } = useCart();
+  const cartCount = getItemCount();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -105,13 +107,15 @@ const Header = () => {
             </Button>
 
             {/* Cart */}
-            <Button variant="ghost" size="icon" className="relative hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 hover-glow">
-              <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 w-5 h-5 text-xs p-0 flex items-center justify-center luna-gradient animate-pulse">
-                  {cartCount}
-                </Badge>
-              )}
+            <Button variant="ghost" size="icon" className="relative hover:bg-blue-500/20 hover:text-blue-400 transition-all duration-300 hover-glow" asChild>
+              <Link to="/cart">
+                <ShoppingCart className="w-5 h-5" />
+                {cartCount > 0 && (
+                  <Badge className="absolute -top-2 -right-2 w-5 h-5 text-xs p-0 flex items-center justify-center luna-gradient animate-pulse">
+                    {cartCount}
+                  </Badge>
+                )}
+              </Link>
             </Button>
 
             {/* Mobile menu toggle */}

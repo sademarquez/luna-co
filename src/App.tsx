@@ -1,6 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
+import BottomNavigation from '@/components/Layout/BottomNavigation';
 import Index from '@/pages/Index';
 import Catalog from '@/pages/Catalog';
 import Services from '@/pages/Services';
@@ -14,7 +15,7 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App pb-20 md:pb-0">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/catalog" element={<Catalog />} />
@@ -25,6 +26,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <BottomNavigation />
         <Toaster />
       </div>
     </Router>
