@@ -1,61 +1,68 @@
 
 {
-  "name": "Luna Comunicaciones",
-  "short_name": "Luna",
-  "description": "Tu tienda especializada en celulares, accesorios y servicios técnicos",
+  "name": "Luna Comunicaciones - Tecnología y Servicios",
+  "short_name": "Luna Tech",
+  "description": "Tu tienda de tecnología móvil con los mejores productos y servicios técnicos especializados",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#1e293b",
   "theme_color": "#3b82f6",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "es",
-  "categories": ["shopping", "business"],
+  "dir": "ltr",
+  "categories": ["shopping", "technology", "business"],
   "icons": [
     {
-      "src": "/icons/icon-72x72.png",
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-96x96.png",
+      "src": "/icon-96x96.png", 
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-128x128.png",
-      "sizes": "128x128",
+      "src": "/icon-128x128.png",
+      "sizes": "128x128", 
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-144x144.png",
+      "src": "/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-152x152.png",
+      "src": "/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-384x384.png",
+      "src": "/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
@@ -64,25 +71,53 @@
   "shortcuts": [
     {
       "name": "Catálogo",
-      "short_name": "Productos",
-      "description": "Ver todos los productos",
+      "short_name": "Productos", 
+      "description": "Ver todos los productos disponibles",
       "url": "/catalog",
-      "icons": [{"src": "/icons/catalog-icon.png", "sizes": "96x96"}]
-    },
-    {
-      "name": "Carrito",
-      "short_name": "Carrito",
-      "description": "Ver carrito de compras",
-      "url": "/cart",
-      "icons": [{"src": "/icons/cart-icon.png", "sizes": "96x96"}]
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Ofertas",
       "short_name": "Ofertas",
-      "description": "Ver ofertas especiales",
-      "url": "/offers",
-      "icons": [{"src": "/icons/offers-icon.png", "sizes": "96x96"}]
+      "description": "Ofertas especiales y descuentos",
+      "url": "/offers", 
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Servicios",
+      "short_name": "Reparaciones",
+      "description": "Servicios técnicos especializados",
+      "url": "/services",
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contacto",
+      "short_name": "WhatsApp",
+      "description": "Contactar por WhatsApp",
+      "url": "/contact",
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
     }
   ],
-  "prefer_related_applications": false
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-narrow.png", 
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }

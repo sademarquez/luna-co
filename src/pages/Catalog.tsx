@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Search, Filter, Grid, List, Star, Heart, ShoppingCart } from 'lucide-react';
+import { Search, Filter, Grid, List, Star, Heart, ShoppingCart, ChevronDown } from 'lucide-react';
 import Header from '@/components/Layout/Header';
 import Footer from '@/components/Layout/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
@@ -15,7 +14,7 @@ const Catalog = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
-  const [priceRange, setPriceRange] = useState([0, 2000000]);
+  const [showFilters, setShowFilters] = useState(false);
 
   // Mock products data
   const products = [
@@ -24,7 +23,7 @@ const Catalog = () => {
       name: 'iPhone 15 Pro Max',
       price: 4500000,
       originalPrice: 5000000,
-      image: '/api/placeholder/300/300',
+      image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop',
       rating: 4.8,
       reviews: 124,
       category: 'smartphones',
@@ -38,7 +37,7 @@ const Catalog = () => {
       name: 'Samsung Galaxy S24 Ultra',
       price: 4200000,
       originalPrice: 4500000,
-      image: '/api/placeholder/300/300',
+      image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400&h=400&fit=crop',
       rating: 4.7,
       reviews: 89,
       category: 'smartphones',
@@ -52,7 +51,7 @@ const Catalog = () => {
       name: 'AirPods Pro 2da Gen',
       price: 850000,
       originalPrice: 950000,
-      image: '/api/placeholder/300/300',
+      image: 'https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop',
       rating: 4.9,
       reviews: 256,
       category: 'headphones',
@@ -66,7 +65,7 @@ const Catalog = () => {
       name: 'Funda MagSafe iPhone 15',
       price: 120000,
       originalPrice: 150000,
-      image: '/api/placeholder/300/300',
+      image: 'https://images.unsplash.com/photo-1601593346740-925612772716?w=400&h=400&fit=crop',
       rating: 4.5,
       reviews: 45,
       category: 'cases',
@@ -80,7 +79,7 @@ const Catalog = () => {
       name: 'Cargador Inalámbrico 15W',
       price: 180000,
       originalPrice: 220000,
-      image: '/api/placeholder/300/300',
+      image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
       rating: 4.3,
       reviews: 67,
       category: 'chargers',
@@ -94,7 +93,7 @@ const Catalog = () => {
       name: 'iPad Air 5ta Gen',
       price: 2800000,
       originalPrice: 3200000,
-      image: '/api/placeholder/300/300',
+      image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=400&fit=crop',
       rating: 4.6,
       reviews: 78,
       category: 'tablets',
@@ -106,12 +105,12 @@ const Catalog = () => {
   ];
 
   const categories = [
-    { id: 'all', name: 'Todos los productos', icon: '📱' },
-    { id: 'smartphones', name: 'Smartphones', icon: '📱' },
+    { id: 'all', name: 'Todos', icon: '📱' },
+    { id: 'smartphones', name: 'Phones', icon: '📱' },
     { id: 'accessories', name: 'Accesorios', icon: '🔌' },
     { id: 'cases', name: 'Fundas', icon: '🛡️' },
     { id: 'chargers', name: 'Cargadores', icon: '🔋' },
-    { id: 'headphones', name: 'Audífonos', icon: '🎧' },
+    { id: 'headphones', name: 'Audio', icon: '🎧' },
     { id: 'tablets', name: 'Tablets', icon: '📲' }
   ];
 
@@ -127,32 +126,41 @@ const Catalog = () => {
     return (
       (selectedCategory === 'all' || product.category === selectedCategory) &&
       (searchTerm === '' || product.name.toLowerCase().includes(searchTerm.toLowerCase())) &&
-      (product.price >= priceRange[0] && product.price <= priceRange[1])
+      product.inStock
     );
   });
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <Header />
       <main className="flex-1 pt-20">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
-          <div className="container mx-auto px-4">
+        {/* Hero Section - Enhanced */}
+        <section className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white py-16 lg:py-20">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-purple-500/20"></div>
+          
+          {/* Floating elements */}
+          <div className="absolute top-10 right-10 w-20 h-20 bg-white/10 rounded-full blur-xl floating"></div>
+          <div className="absolute bottom-20 left-20 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl floating-delayed"></div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Catálogo Completo
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-responsive-4xl">
+                Catálogo <span className="text-gradient bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent">Premium</span>
               </h1>
-              <p className="text-xl opacity-90 mb-8">
-                Encuentra los mejores productos tecnológicos al mejor precio
+              <p className="text-lg md:text-xl opacity-90 mb-8 text-responsive-lg">
+                Tecnología de última generación al mejor precio
               </p>
+              
+              {/* Enhanced Search */}
               <div className="max-w-md mx-auto">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <div className="relative glass-strong rounded-2xl p-1">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/70 w-5 h-5" />
                   <Input
                     placeholder="Buscar productos..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-4 py-3 text-lg bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-gray-300"
+                    className="pl-12 pr-4 py-4 text-lg bg-transparent border-0 text-white placeholder:text-white/70 focus:ring-2 focus:ring-white/30"
                   />
                 </div>
               </div>
@@ -160,131 +168,152 @@ const Catalog = () => {
           </div>
         </section>
 
-        {/* Filters and Controls */}
-        <section className="bg-white border-b sticky top-20 z-40">
+        {/* Filters - Mobile Optimized */}
+        <section className="sticky top-20 z-40 glass-strong border-b backdrop-blur-md">
           <div className="container mx-auto px-4 py-4">
-            <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-              {/* Categories */}
-              <div className="flex flex-wrap gap-2">
-                {categories.map(category => (
-                  <Button
-                    key={category.id}
-                    variant={selectedCategory === category.id ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category.id)}
-                    className="text-sm"
-                  >
-                    {category.icon} {category.name}
-                  </Button>
-                ))}
+            {/* Mobile Filter Toggle */}
+            <div className="flex items-center justify-between lg:hidden mb-4">
+              <Button
+                variant="outline"
+                onClick={() => setShowFilters(!showFilters)}
+                className="glass text-sm"
+              >
+                <Filter className="w-4 h-4 mr-2" />
+                Filtros
+                <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+              </Button>
+              
+              <div className="flex items-center gap-2">
+                <Button
+                  variant={viewMode === 'grid' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setViewMode('grid')}
+                  className="p-2"
+                >
+                  <Grid className="w-4 h-4" />
+                </Button>
+                <Button
+                  variant={viewMode === 'list' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setViewMode('list')}
+                  className="p-2"
+                >
+                  <List className="w-4 h-4" />
+                </Button>
               </div>
+            </div>
 
-              {/* Controls */}
-              <div className="flex items-center gap-4">
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="Ordenar por" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="featured">Destacados</SelectItem>
-                    <SelectItem value="price-low">Precio: Menor a Mayor</SelectItem>
-                    <SelectItem value="price-high">Precio: Mayor a Menor</SelectItem>
-                    <SelectItem value="rating">Mejor Calificados</SelectItem>
-                    <SelectItem value="newest">Más Nuevos</SelectItem>
-                  </SelectContent>
-                </Select>
+            {/* Categories - Responsive */}
+            <div className={`${showFilters || window.innerWidth >= 1024 ? 'block' : 'hidden'} lg:block`}>
+              <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
+                {/* Categories */}
+                <div className="flex flex-wrap gap-2 w-full lg:w-auto">
+                  {categories.map(category => (
+                    <Button
+                      key={category.id}
+                      variant={selectedCategory === category.id ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`text-xs lg:text-sm glass hover-glow transition-all ${
+                        selectedCategory === category.id ? 'luna-gradient shadow-lg' : ''
+                      }`}
+                    >
+                      <span className="mr-1">{category.icon}</span>
+                      {category.name}
+                    </Button>
+                  ))}
+                </div>
 
-                <div className="flex items-center border rounded-lg">
-                  <Button
-                    variant={viewMode === 'grid' ? 'default' : 'ghost'}
-                    size="sm"
-                    onClick={() => setViewMode('grid')}
-                  >
-                    <Grid className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant={viewMode === 'list' ? 'default' : 'ghost'}
-                    size="sm"
-                    onClick={() => setViewMode('list')}
-                  >
-                    <List className="w-4 h-4" />
-                  </Button>
+                {/* Sort */}
+                <div className="w-full lg:w-48">
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger className="glass text-sm">
+                      <SelectValue placeholder="Ordenar por" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="featured">Destacados</SelectItem>
+                      <SelectItem value="price-low">Precio: Menor a Mayor</SelectItem>
+                      <SelectItem value="price-high">Precio: Mayor a Menor</SelectItem>
+                      <SelectItem value="rating">Mejor Calificados</SelectItem>
+                      <SelectItem value="newest">Más Nuevos</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Products Grid */}
-        <section className="py-12">
+        {/* Products Grid - Ultra Responsive */}
+        <section className="py-8 lg:py-12">
           <div className="container mx-auto px-4">
             <div className="mb-6">
-              <p className="text-gray-600">
-                Mostrando {filteredProducts.length} de {products.length} productos
+              <p className="text-gray-600 text-responsive-sm">
+                Mostrando {filteredProducts.length} productos disponibles
               </p>
             </div>
 
-            <div className={`grid gap-6 ${
+            <div className={`tech-grid ${
               viewMode === 'grid' 
-                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
+                ? 'grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5' 
                 : 'grid-cols-1'
-            }`}>
+            } gap-4 lg:gap-6`}>
               {filteredProducts.map(product => (
-                <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                <Card key={product.id} className="group glass hover-lift hover-glow card-3d overflow-hidden border-0 shadow-lg">
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden">
                       {/* Product Image */}
-                      <div className="aspect-square bg-gray-100 flex items-center justify-center">
-                        <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                          <span className="text-4xl">📱</span>
-                        </div>
+                      <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 gpu-accelerated"
+                          loading="lazy"
+                        />
                       </div>
 
                       {/* Badges */}
                       <div className="absolute top-2 left-2 flex flex-col gap-1">
                         {product.isNew && (
-                          <Badge className="bg-green-500 text-white">Nuevo</Badge>
+                          <Badge className="neon-green text-white text-xs px-2 py-1">✨ Nuevo</Badge>
                         )}
                         {product.discount > 0 && (
-                          <Badge className="bg-red-500 text-white">-{product.discount}%</Badge>
-                        )}
-                        {!product.inStock && (
-                          <Badge variant="secondary">Agotado</Badge>
+                          <Badge className="bg-red-500 text-white text-xs px-2 py-1 pulse-glow">-{product.discount}%</Badge>
                         )}
                       </div>
 
                       {/* Quick Actions */}
-                      <div className="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button size="icon" variant="secondary" className="w-8 h-8">
+                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+                        <Button size="icon" variant="secondary" className="w-8 h-8 glass mb-1">
                           <Heart className="w-4 h-4" />
                         </Button>
                       </div>
 
-                      {/* Quick Add to Cart */}
-                      <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button size="sm" disabled={!product.inStock}>
-                          <ShoppingCart className="w-4 h-4 mr-1" />
+                      {/* Quick Add to Cart - Mobile Optimized */}
+                      <div className="absolute inset-x-2 bottom-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <Button size="sm" className="w-full luna-gradient text-white text-xs lg:text-sm shadow-lg">
+                          <ShoppingCart className="w-3 h-3 lg:w-4 lg:h-4 mr-1" />
                           Agregar
                         </Button>
                       </div>
                     </div>
 
-                    <div className="p-4">
+                    <div className="p-3 lg:p-4 space-y-2 lg:space-y-3">
                       {/* Brand */}
-                      <p className="text-sm text-gray-500 mb-1">{product.brand}</p>
+                      <p className="text-xs lg:text-sm text-gray-500 font-medium">{product.brand}</p>
                       
                       {/* Product Name */}
-                      <h3 className="font-semibold text-lg mb-2 line-clamp-2">
+                      <h3 className="font-semibold text-sm lg:text-base line-clamp-2 text-responsive-sm">
                         {product.name}
                       </h3>
 
-                      {/* Rating */}
-                      <div className="flex items-center gap-1 mb-3">
+                      {/* Rating - Compact */}
+                      <div className="flex items-center gap-1">
                         <div className="flex items-center">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-4 h-4 ${
+                              className={`w-3 h-3 lg:w-4 lg:h-4 ${
                                 i < Math.floor(product.rating)
                                   ? 'text-yellow-400 fill-current'
                                   : 'text-gray-300'
@@ -292,31 +321,37 @@ const Catalog = () => {
                             />
                           ))}
                         </div>
-                        <span className="text-sm text-gray-600">
+                        <span className="text-xs lg:text-sm text-gray-600">
                           {product.rating} ({product.reviews})
                         </span>
                       </div>
 
                       {/* Price */}
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="text-2xl font-bold text-primary">
-                          {formatPrice(product.price)}
-                        </span>
-                        {product.originalPrice > product.price && (
-                          <span className="text-sm text-gray-500 line-through">
-                            {formatPrice(product.originalPrice)}
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg lg:text-xl font-bold luna-gradient-text text-responsive-lg">
+                            {formatPrice(product.price)}
                           </span>
+                        </div>
+                        {product.originalPrice > product.price && (
+                          <div className="flex flex-col lg:flex-row lg:items-center gap-1">
+                            <span className="text-xs lg:text-sm text-gray-500 line-through">
+                              {formatPrice(product.originalPrice)}
+                            </span>
+                            <span className="text-xs lg:text-sm text-green-600 font-medium">
+                              Ahorras {formatPrice(product.originalPrice - product.price)}
+                            </span>
+                          </div>
                         )}
                       </div>
 
-                      {/* Actions */}
-                      <div className="flex gap-2">
+                      {/* Actions - Mobile First */}
+                      <div className="flex gap-2 pt-2">
                         <Button 
-                          className="flex-1" 
-                          disabled={!product.inStock}
-                          variant={product.inStock ? "default" : "secondary"}
+                          className="flex-1 text-xs lg:text-sm glass hover:luna-gradient hover:text-white transition-all" 
+                          variant="outline"
                         >
-                          {product.inStock ? "Ver Detalles" : "Notificar Stock"}
+                          Ver Detalles
                         </Button>
                       </div>
                     </div>
@@ -328,7 +363,7 @@ const Catalog = () => {
             {/* Load More */}
             {filteredProducts.length > 0 && (
               <div className="text-center mt-12">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" className="glass hover-glow">
                   Cargar más productos
                 </Button>
               </div>
@@ -337,15 +372,15 @@ const Catalog = () => {
             {/* No Results */}
             {filteredProducts.length === 0 && (
               <div className="text-center py-16">
-                <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-semibold mb-4">No se encontraron productos</h3>
-                <p className="text-gray-600 mb-6">
+                <div className="text-6xl mb-4 floating">🔍</div>
+                <h3 className="text-2xl font-semibold mb-4 text-responsive-xl">No se encontraron productos</h3>
+                <p className="text-gray-600 mb-6 text-responsive-base">
                   Intenta ajustar tus filtros o buscar con otros términos
                 </p>
                 <Button onClick={() => {
                   setSearchTerm('');
                   setSelectedCategory('all');
-                }}>
+                }} className="luna-gradient">
                   Limpiar filtros
                 </Button>
               </div>
