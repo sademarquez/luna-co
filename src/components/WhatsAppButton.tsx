@@ -3,6 +3,13 @@ import React, { useState } from 'react';
 import { MessageCircle, X, Send, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+// Define gtag function to avoid TypeScript errors
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 const WhatsAppButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -47,8 +54,8 @@ const WhatsAppButton = () => {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     
     // Analytics tracking (optional - for ConvertPixel integration)
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'whatsapp_click', {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'whatsapp_click', {
         event_category: 'engagement',
         event_label: message.split('!')[0] // First part of message as label
       });

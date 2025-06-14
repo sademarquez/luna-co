@@ -62,7 +62,8 @@ export default {
 					'primary-dark': 'hsl(var(--luna-primary-dark))',
 					secondary: 'hsl(var(--luna-secondary))',
 					accent: 'hsl(var(--luna-accent))',
-					'tech-gray': 'hsl(var(--luna-tech-gray))',
+					'tech-black': 'hsl(var(--luna-tech-black))',
+					'deep-black': 'hsl(var(--luna-deep-black))',
 					'light-gray': 'hsl(var(--luna-light-gray))',
 					success: 'hsl(var(--luna-success))',
 					warning: 'hsl(var(--luna-warning))',
@@ -126,7 +127,7 @@ export default {
 						boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)'
 					},
 					'50%': {
-						boxShadow: '0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(147, 51, 234, 0.4)'
+						boxShadow: '0 0 40px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.4)'
 					}
 				},
 				'floating': {
@@ -147,6 +148,14 @@ export default {
 					'50%': {
 						backgroundPosition: '100% 50%'
 					}
+				},
+				'cta-pulse': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2)'
+					},
+					'50%': {
+						boxShadow: '0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.4), 0 0 80px rgba(59, 130, 246, 0.2)'
+					}
 				}
 			},
 			animation: {
@@ -158,7 +167,8 @@ export default {
 				'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
 				'floating': 'floating 6s ease-in-out infinite',
 				'floating-delayed': 'floating 6s ease-in-out infinite 2s',
-				'gradient-shift': 'gradient-shift 3s ease infinite'
+				'gradient-shift': 'gradient-shift 3s ease infinite',
+				'cta-pulse': 'cta-pulse 2s ease-in-out infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -180,10 +190,13 @@ export default {
 				'glow': '0 0 20px rgba(59, 130, 246, 0.3)',
 				'glow-lg': '0 0 40px rgba(59, 130, 246, 0.4)',
 				'neon': '0 0 5px currentColor, 0 0 20px currentColor, 0 0 40px currentColor',
+				'neon-blue': '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3)',
+				'cta-shadow': '0 8px 32px rgba(59, 130, 246, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2)',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'luna-gradient': 'linear-gradient(135deg, hsl(var(--luna-primary)) 0%, hsl(var(--luna-secondary)) 50%, hsl(var(--luna-accent)) 100%)',
 			}
 		}
 	},
