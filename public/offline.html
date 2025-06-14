@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión - Luna Comunicaciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 2rem;
+            max-width: 500px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo span {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .features h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .features ul {
+            list-style: none;
+            opacity: 0.8;
+        }
+        
+        .features li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .features li:before {
+            content: "✓ ";
+            color: #4ade80;
+            font-weight: bold;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <span>L</span>
+        </div>
+        
+        <div class="icon pulse">📡</div>
+        
+        <h1>Sin conexión</h1>
+        <p>Parece que no tienes conexión a internet en este momento. No te preocupes, algunos contenidos están disponibles sin conexión.</p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Intentar de nuevo
+        </button>
+        
+        <div class="features">
+            <h3>Disponible sin conexión:</h3>
+            <ul>
+                <li>Productos en tu carrito</li>
+                <li>Páginas visitadas recientemente</li>
+                <li>Información de contacto</li>
+                <li>Catálogo básico</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Auto-retry when connection is restored
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Check connection status
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }
+        
+        // Check every 5 seconds
+        setInterval(checkConnection, 5000);
+    </script>
+</body>
+</html>
